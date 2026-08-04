@@ -1,4 +1,5 @@
 const express = require("express")
+const { Blog, User } = require('./models')
 
 const  app = express()
 
@@ -30,6 +31,15 @@ app.use(errorHanlder)
 const start = async () => {
 
 await connectToDatabase()
+console.log("Database connected and models ready.");
+ 
+if(process.env.NODE_ENV !== 'production')
+{
+
+  await Blog.sync({alter: true})
+  await User.sync({alter: true})
+  console.log("set for dev and testing")
+}
 app.listen( PORT, () => {
   console.log(`Server running on port: ${PORT}`)  
 })
