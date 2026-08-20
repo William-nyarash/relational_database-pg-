@@ -5,7 +5,6 @@ require("dotenv").config();
 
 const { TESTING } = process.env;
 const DATABASE = TESTING === "true" ? TEST_DATABASE_URL : DATABASE_URL;
-
 const sequelize = new Sequelize(DATABASE, {
   dialectOptions: {
     ssl: {
