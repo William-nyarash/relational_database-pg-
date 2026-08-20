@@ -87,14 +87,15 @@ router
     res.json(req.blog);
   })
   .put(async (req, res, next) => {
-    const blog = req.body
+    let blog = req.body
     try {
-      blog = blog.likes;
+      blog.likes= blog.likes;
       await blog.save();
 
       res.json(blog);
     } catch (error) {
       next(error);
+
     }
   })
   .delete(async (req, res, next) => {
