@@ -8,15 +8,12 @@ const User = require("../models/user")
 router.post("/", async (req, res , next ) => {
     const dataBody = req.body
     try {
-        console.log("the data is ", dataBody)
         const user = await User.findOne({
             where: {
                 username: dataBody.username
             }
         })
-
-        const password =  dataBody.password === 'secret'
-
+        const password = dataBody.password  === 'secret'
         if(!(user && password )){
             return res.status(401).json({
                 error: "invalid username or password"
