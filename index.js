@@ -19,7 +19,7 @@ const errorHanlder = require("./middleware/error.middleware")
 app.get("/ws", (request, response) => {
   return response.status(200)
 })
-app.use("/api/blog",  blogRouter)
+app.use("/api/blogs",  blogRouter)
 app.use("/api/users", userRouter)
 app.use("/api/author", authorRouter)
 app.use("/api/login", loginRouter)
@@ -35,7 +35,6 @@ console.log("Database connected and models ready.");
  
 if(process.env.NODE_ENV !== 'production')
 {
-
   await Blog.sync({alter: true})
   await User.sync({alter: true})
   console.log("set for dev and testing")
